@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Zabbix Bulk Host Import Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script defer src="script.js"></script>
+
+</head>
+
+<body>
+
+<h1>Zabbix Automated Bulk Host Import Tool</h1>
+<h2>Designed by Muthukrishnan Ramasamy</h2>
+
+<div class="container">
+
+    <div class="toggle-dark" onclick="toggleDark()">🌙 Dark Mode</div>
+
+    <div class="card">
+        <div class="card-title">🔐 Zabbix API Connection</div>
+
+        <input type="text" id="zbxUrl" value="http://192.168.1.12/api_jsonrpc.php">
+        <input type="text" id="zbxUser" value="Admin">
+        <input type="password" id="zbxPass" value="zabbix">
+
+        <button class="btn" onclick="testLogin()">Test Login</button>
+        <div id="loginStatus"></div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">📄 Upload Excel File</div>
+        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+        <button class="btn" onclick="validateExcel()">Validate Excel</button>
+
+        <h3>Preview (First 10 Rows Only)</h3>
+        <table id="previewTable"></table>
+    </div>
+
+    <div class="card">
+        <div class="card-title">🚀 Start Bulk Import</div>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+
+        <button class="btn" onclick="startImport()">Start Import</button>
+    </div>
+
+    <div class="card">
+        <div class="card-title">📊 Import Results</div>
+        <table id="resultTable"></table>
+        <button class="btn" onclick="exportFinal()">Export XLSX</button>
+    </div>
+
+</div>
+
+</body>
+</html>
